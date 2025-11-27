@@ -45,18 +45,6 @@ class HallucinationFeatureExtractor:
         return float(np.max(counts) / len(generations))
         '''
 
-    def retrieval_similarity(self, claim, retrieved_docs):
-        """
-        retrieved_docs: List[str] top-k snippets
-        Returns max cosine similarity between claim and retrieved docs
-        """
-        if not retrieved_docs:
-            return 0.0
-
-        docs = [claim] + retrieved_docs
-        tfidf = self.vectorizer.fit_transform(docs)
-        sims = cosine_similarity(tfidf[0:1], tfidf[1:]).flatten()
-        return float(np.max(sims))
 
     def extract(
         self,
